@@ -1,3 +1,3 @@
 # Trees
-![Tree Clipart](https://listimg.pinclipart.com/picdir/s/142-1424784_adhd-awareness-hint-oak-tree-clip-art-png.png)
+![Conifer Clipart](hhttps://www.pngjoy.com/pngm/108/2248406_pine-tree-silhouette-forest-clipart-png-download.png)
 Our project for the Trees simulation
