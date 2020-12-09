@@ -3,10 +3,10 @@ namespace trees
 	public sealed class Tree
 	{
 		ushort age;
-		bool prot, damage, dove; // protected is a keyword
+		bool protection, damage, dove; // protected is a keyword
 		TreeType treeType;
 
-		public bool harvestable() {
+		/*public bool harvestable() {
 			switch (treeType)
 			{
 				case TreeType.Maple:
@@ -20,6 +20,22 @@ namespace trees
 			}
 		}
 
+		// Reimplemented harvestable with lambda and conditional expressions
+		public bool harvestable() =>
+		(treeType == TreeType.Maple) ? false : ( // Maples not harvestable
+			(treeType == TreeType.Fir) // If fir
+			? ((age >= 9125u) && (age <= 25550u)) // then check age conditions
+			: ((age >= 32850u) && (age <= 54750u)) // else check age conditions
+		);*/
+
+		// Final impl
+		public bool harvestable() => treeType switch {
+			TreeType.Maple => false,
+			TreeType.Fir => (age >= 9125u) && (age <= 25550u),
+			TreeType.Spruce => (age >= 32850u) && (age <= 54750u),
+			_ => false,
+		};
+
 		/**
 		 * If it's
 		 *  - Maple
@@ -30,9 +46,31 @@ namespace trees
 
 		// Tree -> uint
 		public static implicit operator uint(Tree t) {
-			uint o = 0u;
+			BitField b = new BitField(
+				// XX
+				// (uint)
+				// --XX
+				// <<
+				// XX--
+				((uint)t.age) << 16
+			);
 
-			return o;
+			/**
+			 * 00
+			 * 0N or 10
+			 * N = 0 if Fir else 1
+			 * -> true => treeType == Spruce
+			 */
+			b[0] = false;
+			b[1] = false;
+			if (t.treeType != TreeType.Maple) b[0] = t.treeType == TreeType.Spruce;
+			else b[1] = true;
+
+			b[2] = t.damage;
+			b[3] = t.dove;
+			b[4] = t.protection;
+
+			return b;
 		}
 
 		// uint -> Tree
@@ -49,15 +87,15 @@ namespace trees
 			 *     If B -> Spruce
 			 *     Else -> Fir
 			 */ 
-			TreeType t = bits[1] ? TreeType.Maple : (bits[0] ? TreeType.Spruce : TreeType.Fir);
 			return new Tree() {
+				treeType = bits[1] ? TreeType.Maple : (bits[0] ? TreeType.Spruce : TreeType.Fir),
 				// XX--
 				// >>
 				// --XX
 				// (ushort)
 				// XX
 				age = (ushort)(s >> 16),
-				prot = bits[4],
+				protection = bits[4],
 				dove = bits[3],
 				damage = bits[2],
 			};
