@@ -13,8 +13,13 @@ void example(ref uint[] trees) {
   Tree tree = trees[5]; // Get a tree
   tree.age++;
   tree.damage = true;
+  Console.WriteLine(
+    evaluate(ref tree) // print out the result of evaluate -- "True"
+  );
   trees[5] = tree; // Set the tree again
 }
+
+bool evaluate(ref Tree tree) => tree.damage;
 ```
 
 ## `uint` tree usage
