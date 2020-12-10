@@ -1,32 +1,13 @@
+using System;
+
 namespace trees
 {
 	public sealed class Tree
 	{
-		ushort age;
-		bool protection, damage, dove; // protected is a keyword
+		int age;
+		bool dove;
+		public bool damage, fire;
 		TreeType treeType;
-
-		/*public bool harvestable() {
-			switch (treeType)
-			{
-				case TreeType.Maple:
-					return false; // never harvestable
-				case TreeType.Fir:
-					return (age >= 9125u) && (age <= 25550u); // 25yr <= age <= 70yr
-				case TreeType.Spruce:
-					return (age >= 32850u) && (age <= 54750u); // 90yr <= age <= 150yr
-				default:
-					return false; // something went wrong
-			}
-		}
-
-		// Reimplemented harvestable with lambda and conditional expressions
-		public bool harvestable() =>
-		(treeType == TreeType.Maple) ? false : ( // Maples not harvestable
-			(treeType == TreeType.Fir) // If fir
-			? ((age >= 9125u) && (age <= 25550u)) // then check age conditions
-			: ((age >= 32850u) && (age <= 54750u)) // else check age conditions
-		);*/
 
 		// Final impl
 		public bool harvestable() => treeType switch {
@@ -45,61 +26,35 @@ namespace trees
 		public bool tappable() => (treeType == TreeType.Maple) && (age >= 1460) && (age % 730 == 0);
 
 		// Tree -> uint
-		public static implicit operator uint(Tree t) {
-			BitField b = new BitField(
-				// XX
-				// (uint)
-				// --XX
-				// <<
-				// XX--
-				((uint)t.age) << 16
-			);
 
-			/**
-			 * 00
-			 * 0N or 10
-			 * N = 0 if Fir else 1
-			 * -> true => treeType == Spruce
-			 */
-			b[0] = false;
-			b[1] = false;
-			if (t.treeType != TreeType.Maple) b[0] = t.treeType == TreeType.Spruce;
-			else b[1] = true;
-
-			b[2] = t.damage;
-			b[3] = t.dove;
-			b[4] = t.protection;
-
-			return b;
+		public Tree(ref int rotation, bool calculate_protection) {
+			Random r = new Random();
+			age = 0;
+			// damage = r.Next(0,1) == 0; // 50:50 change of protection or damage
+			damage = (calculate_protection ? (r.Next(0, 100) > 50) : false);
+			dove = r.Next(0,50) == 0; // 1 / 50 chance of dove in tree
+			fire = false;
+			treeType = ((rotation % 3) == 0)
+				? TreeType.Maple
+				: (
+					(r.Next(0,100) <= 20)
+					? TreeType.Spruce :
+					TreeType.Fir
+				);
+			rotation++;
 		}
 
-		// uint -> Tree
-		public static implicit operator Tree(uint s) {
-			BitField bits = new BitField(s);
-			/**
-			 * AB
-			 * 00   Fir
-			 * 01   Spruce
-			 * 10   Maple
-			 * 
-			 * If A -> Maple
-			 * Else
-			 *     If B -> Spruce
-			 *     Else -> Fir
-			 */ 
-			return new Tree() {
-				treeType = bits[1] ? TreeType.Maple : (bits[0] ? TreeType.Spruce : TreeType.Fir),
-				// XX--
-				// >>
-				// --XX
-				// (ushort)
-				// XX
-				age = (ushort)(s >> 16),
-				protection = bits[4],
-				dove = bits[3],
-				damage = bits[2],
-			};
-		}
+		public static implicit operator string(Tree tree) => tree.damage
+		? "\u001b[30;1mX\u001b[0;0m"
+		: tree.treeType switch {
+			TreeType.Fir => "\u001b[32mf\u001b[0;0m",
+			TreeType.Spruce => "\u001b[32;1ms\u001b[0;0m",
+			TreeType.Maple => "\u001b[31;1mm\u001b[0;0m",
+			_ => " ",
+		};
+
+		public override string ToString() => this;
+		// utilise implicit conversion
 	}
 
 	public enum TreeType {Fir,Spruce,Maple}

@@ -4,22 +4,22 @@ namespace trees
 {
 	class Program
 	{
-		static void Main() => new Program();
-
-		// DATA
-		uint[] trees = new uint[10_000]; // Make the array on the heap
-
-		// Entry Point for the program
-		public Program() {
-			/**
-			 * This bit is where the program begins,
-			 * 
-			 * Here is where you should call tree generation and run the mainloop
-			 * of the simulation.
-			 * 
-			 * The reason it's in a constructor is so that trees is created not on the stack,
-			 * but on the heap. This will mean the program is less likely to stack overflow.
-			 */
+		public static void generatetrees(ref Tree[,] trees) {
+			int rotation = 1;
+			for (int x = 0; x<100; x++) for (int y = 0; y<100; y++) {
+				// trees[x,y] = new Tree(ref rotation, true);
+				trees[x,y] = new Tree(ref rotation, false);
+				rotation = 1; // make sure that no rotation actually occurs
+			}
+		}
+		static void Main() {
+			Tree[,] trees= new Tree[100,100];
+			generatetrees(ref trees);
+			for(int x=0;x<100;x++)
+			{
+				for(int y=0;y<100;y++) Console.Write(trees[x,y]);
+				Console.WriteLine();
+			}
 		}
 	}
 }
