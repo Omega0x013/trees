@@ -7,7 +7,7 @@ namespace trees
 		int age;
 		bool dove;
 		public bool damage, fire;
-		TreeType treeType;
+		public readonly TreeType treeType;
 
 		// Final impl
 		public bool harvestable() => !dove && treeType switch {
@@ -23,7 +23,11 @@ namespace trees
 		 *  - 4 years or older
 		 *  - Harvesting Date
 		 */
-		public bool tappable() => !dove && (treeType == TreeType.Maple) && (age >= 1460) && (age % 730 == 0);
+		public bool tappable() => 
+			!dove
+			&& (treeType == TreeType.Maple)
+			&& (age >= 1460)
+			&& (age % 730 == 0);
 
 		public bool removeable() => damage;
 
