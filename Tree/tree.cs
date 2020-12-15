@@ -5,7 +5,7 @@ namespace trees
 	public sealed class Tree
 	{
 		int age;
-		bool dove;
+		public bool dove;
 		public bool damage, fire;
 		public readonly TreeType treeType;
 

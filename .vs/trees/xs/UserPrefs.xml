@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{31EE28A2-D457-4234-B5C7-AC040E39B216}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tree/tree.cs">
+    <Files>
+      <File FileName="Program.cs" Line="22" Column="36" IsPinned="True" />
+      <File FileName="Layout/layout.cs" Line="6" Column="22" />
+      <File FileName="Fires/fires.cs" Line="22" Column="10" />
+      <File FileName="Tree/tree.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="trees" expanded="True">
+            <Node name="trees" expanded="True">
+              <Node name="Fires" expanded="True" />
+              <Node name="Layout" expanded="True" />
+              <Node name="Tree" expanded="True">
+                <Node name="tree.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.trees PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
