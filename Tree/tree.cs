@@ -10,7 +10,7 @@ namespace trees
 		TreeType treeType;
 
 		// Final impl
-		public bool harvestable() => treeType switch {
+		public bool harvestable() => !dove && treeType switch {
 			TreeType.Maple => false,
 			TreeType.Fir => (age >= 9125u) && (age <= 25550u),
 			TreeType.Spruce => (age >= 32850u) && (age <= 54750u),
@@ -23,15 +23,18 @@ namespace trees
 		 *  - 4 years or older
 		 *  - Harvesting Date
 		 */
-		public bool tappable() => (treeType == TreeType.Maple) && (age >= 1460) && (age % 730 == 0);
+		public bool tappable() => !dove && (treeType == TreeType.Maple) && (age >= 1460) && (age % 730 == 0);
+
+		public bool removeable() => damage;
 
 		// Tree -> uint
 
-		public Tree(ref int rotation, bool calculate_protection) {
-			Random r = new Random();
+		public Tree(ref int rotation, bool anydeer, ref Random r) {
+			// Random r = new Random();
 			age = 0;
 			// damage = r.Next(0,1) == 0; // 50:50 change of protection or damage
-			damage = (calculate_protection ? (r.Next(0, 100) > 50) : false);
+			// damage = (calculate_protection ? anydeer : false);
+			damage = anydeer && (r.Next(0,1) == 0);
 			dove = r.Next(0,50) == 0; // 1 / 50 chance of dove in tree
 			fire = false;
 			treeType = ((rotation % 3) == 0)
