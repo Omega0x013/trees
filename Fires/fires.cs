@@ -39,39 +39,38 @@ namespace trees
 			x = 0;
 			y = 0;
 
-			while (new_fire == true)
+			while (new_fire == true & x <= 100 & y <= 100)
 			{
 				new_fire = false;
-				for (int i = 0; i < 10000; i++)
+				if (trees[x, y].fire == true)
 				{
-					if (trees[x, y].fire == true)
+					new_fire = true;
+					if (wind == 0)
 					{
-						new_fire = true;
-						if (wind == 0)
-						{
-							trees[x + 1, y].fire = true;
-							trees[x, y + 1].fire = true;
-							trees[x + 1, y + 1].fire = true;
-						}
-						if (wind == 1)
-						{
-							trees[x + 1, y].fire = true;
-							trees[x + 1, y - 1].fire = true;
-							trees[x, y - 1].fire = true;
-						}
-						if (wind == 2)
-						{
-							trees[x, y - 1].fire = true;
-							trees[x - 1, y - 1].fire = true;
-							trees[x, y - 1].fire = true;
-						}
-						if (wind == 3)
-						{
-							trees[x - 1, y].fire = true;
-							trees[x - 1, y + 1].fire = true;
-							trees[x, y + 1].fire = true;
-						}
+						trees[x + 1, y].fire = true;
+						trees[x, y + 1].fire = true;
+						trees[x + 1, y + 1].fire = true;
 					}
+					if (wind == 1)
+					{
+						trees[x + 1, y].fire = true;
+						trees[x + 1, y - 1].fire = true;
+						trees[x, y - 1].fire = true;
+					}
+					if (wind == 2)
+					{
+						trees[x, y - 1].fire = true;
+						trees[x - 1, y - 1].fire = true;
+						trees[x, y - 1].fire = true;
+					}
+					if (wind == 3)
+					{
+						trees[x - 1, y].fire = true;
+						trees[x - 1, y + 1].fire = true;
+						trees[x, y + 1].fire = true;
+					}
+					y++;
+					x++;
 					// Random randint = new Random();
 					// int rand = randint.Next(15, 100);
 					// if (rand >= 15)

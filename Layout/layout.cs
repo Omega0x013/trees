@@ -27,7 +27,7 @@ namespace trees
 						TreeType.Maple => "\u001b[41m",
 						TreeType.Fir => "\u001b[42m",
 						TreeType.Spruce => "\u001b[43m",
-						_ => ""
+						_ => "  "
 					};
 					
 					if(trees[x,y].dove) fg="\u001b[37;1m";
@@ -35,7 +35,7 @@ namespace trees
 						TreeType.Maple => "\u001b[31m",
 						TreeType.Fir => "\u001b[32m",
 						TreeType.Spruce => "\u001b[33m",
-						_ => ""
+						_ => "  "
 					};
 
 					if(trees[x,y].damage) fg="\u001b[31m";
