@@ -62,6 +62,17 @@ namespace trees
 
 		public override string ToString() => this;
 		// utilise implicit conversion
+
+		public static void Harvest(ref Tree[,] trees, ref Tuple<int, int> results)
+		{
+			/**
+			 * Composed of 3 stages
+			 * 
+			 * 1. Tap
+			 * 2. Damaged
+			 * 3.
+			*/
+		}
 	}
 
 	public enum TreeType {Fir,Spruce,Maple}

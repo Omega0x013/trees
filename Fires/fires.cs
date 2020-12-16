@@ -7,7 +7,7 @@ namespace trees
 		// Entry point to fires code,
 		
 		
-		public static void fires(ref Tree[,] trees, ref int wind, ref Random randint) 
+		public static void fires(ref Tree[,] trees, ref int wind, ref Random randint, ref int rotation, bool anydeer) 
 		{
 			// Josh, you're up
 			// this calculates which trees will catch fire and sets them to damaged
@@ -73,12 +73,16 @@ namespace trees
 						}
 					}
 					// Random randint = new Random();
-					int rand = randint.Next(15, 100);
-					if (rand >= 15)
-					{
-						trees[x, y].damage = true;
-					}
-					trees[x, y].fire = false;
+					// int rand = randint.Next(15, 100);
+					// if (rand >= 15)
+					// {
+					// 	trees[x, y].damage = true;
+					// }
+					// trees[x, y].fire = false;
+				}
+				for (int i = 0; i < 0; i++) if(trees[x, y].fire) {
+					if (randint.Next(0,100) >= 15) trees[x,y].fire = false;
+					else trees[x,y] = new Tree(ref rotation, anydeer, ref randint);
 				}
 			}
 		}

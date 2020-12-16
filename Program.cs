@@ -20,6 +20,7 @@ namespace trees
 			generatetrees(ref trees);
 			Random r = new Random();
 			Animals animals = new Animals();
+			Tuple<int, int> results = new Tuple<int, int>(0,0);
 
 			for (
 				int day = 0;
@@ -29,7 +30,8 @@ namespace trees
 				day,
 				ref trees,
 				ref r,
-				ref animals
+				ref animals,
+				ref results
 			);
 		}
 	}
