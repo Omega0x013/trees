@@ -21,7 +21,7 @@
             // this is to completely add a new tree, would be easier to just overwrite
             // the damaged tree by setting all of the stats to 0:
     }
-    class Tree_Planting
+  class Tree_Planting
     {
         if tree.damaged = true;
             tree.age = 0
@@ -29,4 +29,16 @@
             Protection();
         Tree.type = TreePlanting()
     }
-    // this last bit is just a simplified version, not completely needed
+    class wolves(WolfPopulatino)
+    {
+        int j = 0;
+        int WolfPopulation = 0;
+        for j to 9125;
+        if fences = true;
+            WolfPopulation += 2
+    }
+    class YearEnd(WolfPopulation)
+    {
+        // write to the database the wolf population, the deer population
+        WolfPopulation += 12
+    }
