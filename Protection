@@ -1,0 +1,15 @@
+class Protection
+    {
+        bool protection_ = false;
+        Random randint = new Random();
+        int chance = randint.Next(0, 1);
+        if (chance ==1) then;
+            protection_ = true
+            else
+            protection_ = false;
+           endif;
+            while protection_ = false
+            tree.damaged = true
+            end
+            // this protects the tree using a random number
+    }
