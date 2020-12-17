@@ -1,0 +1,21 @@
+class TreePlanting
+    {
+        int day;
+        int i = 0;
+        while day<> 9125;
+            while i>=15;
+        if i mod 3 = 0 then;
+            Tree.type = maple;
+        else if i mod 7 = 0;
+            tree.type = spruce;
+        else
+            Tree.type = fir;
+            endif;
+            i += 1;
+            Protection();
+            end while;
+        end while;
+            // this just plants the trees according to the specified ratios 
+            // and does it until the end of the simulation
+
+    }
