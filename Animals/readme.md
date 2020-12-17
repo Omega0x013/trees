@@ -1,8 +1,9 @@
 # Wolves / Deer
 
-- `Month()` -- every month
-- `Year()` -- every year
-- `Check(int syrup)` -- every day
+- `void Month()` -- every month
+- `void Year()` -- every year
+- `void Check(int syrup)` -- every day
+- `bool hasDeer()`
 
 In main / day:
 

@@ -19,6 +19,14 @@ namespace trees
 			if (day % 30 == 0) animals.Month();
 
 			// RAIN/FIRES
+			if (FireRisk.risk(day % 365))
+				Fires.fires(
+					ref trees,
+					random.Next(0,3),
+					ref random,
+					ref rotation,
+					animals.hasDeer()
+				);
 
 			// HARVEST
 			Tree.Harvest(ref trees, ref results);

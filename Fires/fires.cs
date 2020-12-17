@@ -7,7 +7,7 @@ namespace trees
 		// Entry point to fires code,
 		
 		
-		public static void fires(ref Tree[,] trees, ref int wind, ref Random randint, ref int rotation, bool anydeer) 
+		public static void fires(ref Tree[,] trees, int wind, ref Random randint, ref int rotation, bool anydeer) 
 		{
 			// Josh, you're up
 			// this calculates which trees will catch fire and sets them to damaged
