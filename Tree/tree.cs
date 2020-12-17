@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace trees
 {
@@ -10,12 +11,13 @@ namespace trees
 		public readonly TreeType treeType;
 
 		// Final impl
-		public bool harvestable() => !dove && treeType switch {
+		public bool harvestable {
+			get => !dove && treeType switch {
 			TreeType.Maple => false,
 			TreeType.Fir => (age >= 9125u) && (age <= 25550u),
 			TreeType.Spruce => (age >= 32850u) && (age <= 54750u),
 			_ => false,
-		};
+		};}
 
 		/**
 		 * If it's
@@ -23,13 +25,15 @@ namespace trees
 		 *  - 4 years or older
 		 *  - Harvesting Date
 		 */
-		public bool tappable() => 
+		public bool tappable {
+			get =>
 			!dove
 			&& (treeType == TreeType.Maple)
 			&& (age >= 1460)
 			&& (age % 730 == 0);
+		}
 
-		public bool removeable() => damage;
+		public bool removeable { get => damage && harvestable; }
 
 		// Tree -> uint
 
@@ -63,18 +67,49 @@ namespace trees
 		public override string ToString() => this;
 		// utilise implicit conversion
 
-		public static void Harvest(ref Tree[,] trees, ref Tuple<int, int> results)
+		public static void Harvest(ref Tree[,] trees, ref Pair<int, int> results, ref int rotation, bool anydeer, ref Random r)
 		{
 			/**
 			 * Composed of 3 stages
 			 * 
 			 * 1. Tap
-			 * 2. Damaged
-			 * 3.
+			 * 2. Detect
+			 * 3. Remove & Replant
 			*/
+			// List<Pair<int, int>> targetTrees = new List<Pair<int, int>>();
+			int x = 10;
+			for(int x=0;x<100;x++)
+				for(int y=0;y<100;y++) {
+				if (trees[x,y].tappable) results.First++;
+				// if (trees[x,y].removeable) targetTrees.Add(new Pair<int, int>(x,y));
+				if (trees[x,y].removeable && x > 0) {
+					results.Second += trees[x,y].treeType switch {
+						TreeType.Fir => 1,
+						TreeType.Spruce => 2,
+						_ => 0
+					}; // add log
+					x -= trees[x,y].treeType switch {
+						TreeType.Fir => 1,
+						TreeType.Spruce => 2,
+						_ => 0
+					}; // reduce tree count
+					trees[x,y] = new Tree(ref rotation, anydeer, ref r);
+				}
+			}
 		}
 	}
 
 	public enum TreeType {Fir,Spruce,Maple}
 	// 00, 01, 10
+
+	public sealed class Pair<T1, T2>
+	{
+		public T1 First {get; set;}
+		public T2 Second {get; set;}
+
+		public Pair(T1 f, T2 s) {
+			First = f;
+			Second = s;
+		}
+	}
 }

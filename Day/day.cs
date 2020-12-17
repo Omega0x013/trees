@@ -10,7 +10,7 @@ namespace trees
 			ref Tree[,] trees,
 			ref Random random,
 			ref Animals animals,
-			ref Tuple<int,int> results,
+			ref Pair<int,int> results,
 			ref int rotation
 		)
 		{
@@ -29,10 +29,10 @@ namespace trees
 				);
 
 			// HARVEST
-			Tree.Harvest(ref trees, ref results);
+			Tree.Harvest(ref trees, ref results, ref rotation, animals.hasDeer(), ref random);
 
 			// DISPLAY
-			if (day % 7 == 0) Layout.layout(ref trees);
+			if (day % 31 == 0) Layout.layout(ref trees);
 		}
 	}
 }

@@ -20,7 +20,7 @@ namespace trees
 			generatetrees(ref trees);
 			Random r = new Random();
 			Animals animals = new Animals();
-			Tuple<int, int> results = new Tuple<int, int>(0,0);
+			Pair<int, int> results = new Pair<int, int>(0,0); // syrup (in trees, 3 cans per tree), logs (in tree values, fir worth one, spruce worth 2)
 			int rotation = 0;
 
 			for (
