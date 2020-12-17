@@ -33,7 +33,7 @@ namespace trees
 			&& (age % 730 == 0);
 		}
 
-		public bool removeable { get => damage && harvestable; }
+		public bool removeable { get => damage || harvestable; }
 
 		// Tree -> uint
 
@@ -77,7 +77,7 @@ namespace trees
 			 * 3. Remove & Replant
 			*/
 			// List<Pair<int, int>> targetTrees = new List<Pair<int, int>>();
-			int x = 10;
+			int v = 10;
 			for(int x=0;x<100;x++)
 				for(int y=0;y<100;y++) {
 				if (trees[x,y].tappable) results.First++;
@@ -88,14 +88,32 @@ namespace trees
 						TreeType.Spruce => 2,
 						_ => 0
 					}; // add log
-					x -= trees[x,y].treeType switch {
+					v -= trees[x,y].treeType switch {
 						TreeType.Fir => 1,
 						TreeType.Spruce => 2,
 						_ => 0
 					}; // reduce tree count
 					trees[x,y] = new Tree(ref rotation, anydeer, ref r);
 				}
+				trees[x,y].age++;
 			}
+		}
+
+		public static Tuple<int, int, int> CountTrees(ref Tree[,] trees) {
+			int[] results = new int[3];
+			// Fir, Spruce, Maple
+			for (int x=0;x<100;x++)
+				for(int y=0;y<100;y++)
+					results[
+						trees[x,y].treeType switch {
+							TreeType.Fir => 0,
+							TreeType.Spruce => 1,
+							TreeType.Maple => 2,
+							_ => 0,
+						}
+					]++;
+
+			return new Tuple<int, int, int>(results[0], results[1], results[2]);
 		}
 	}
 

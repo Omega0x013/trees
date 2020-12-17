@@ -13,9 +13,9 @@ namespace trees
 
 		bool fences;
 		int deer, wolves; // Up to you what you want to do with this
-		public Animals() {
+		public Animals(int deer) {
 			// Constructor -- set deer & wolves
-			deer = 0;
+			this.deer = deer;
 			wolves = 0;
 			fences = false;
 

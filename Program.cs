@@ -19,7 +19,7 @@ namespace trees
 			Tree[,] trees= new Tree[100,100];
 			generatetrees(ref trees);
 			Random r = new Random();
-			Animals animals = new Animals();
+			Animals animals = new Animals(500);
 			Pair<int, int> results = new Pair<int, int>(0,0); // syrup (in trees, 3 cans per tree), logs (in tree values, fir worth one, spruce worth 2)
 			int rotation = 0;
 
@@ -28,13 +28,24 @@ namespace trees
 				day < TimeLength;
 				day++
 			) Day(
-				day,
-				ref trees,
-				ref r,
-				ref animals,
-				ref results,
-				ref rotation
-			);
+					day,
+					ref trees,
+					ref r,
+					ref animals,
+					ref results,
+					ref rotation
+				);
+
+			Tuple<int, int, int> treeCounts = Tree.CountTrees(ref trees);
+
+			Console.WriteLine("Tree Totals:");
+			Console.WriteLine($" Fir    {treeCounts.Item1}");
+			Console.WriteLine($" Spruce {treeCounts.Item2}");
+			Console.WriteLine($" Maple  {treeCounts.Item3}");
+
+			Console.WriteLine("Forest Products:");
+			Console.WriteLine($" Syrup {results.First}");
+			Console.WriteLine($" Wood  {results.Second}");
 		}
 	}
 }

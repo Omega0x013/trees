@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace trees
 {
@@ -32,7 +33,10 @@ namespace trees
 			Tree.Harvest(ref trees, ref results, ref rotation, animals.hasDeer(), ref random);
 
 			// DISPLAY
-			if (day % 31 == 0) Layout.layout(ref trees);
+			if (day % 365 == 0) {
+				Console.WriteLine($"Year {day / 365}");
+				Layout.layout(ref trees);
+			}
 		}
 	}
 }
