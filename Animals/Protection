@@ -13,3 +13,13 @@ class Protection
             end
             // this protects the tree using a random number
     }
+class deerTrampling
+        {
+        if tree.protection = false;
+            tree.damaged = true
+            else
+            Trees.damaged = false
+            // if a tree does not have protection, the deer destroy it instantly
+            // therefore if a tree is planted it has a 50/50 chance of staying alive
+            // change tree colour to damaged
+        }
