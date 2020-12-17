@@ -1,21 +1,44 @@
-class TreePlanting
+   class TreePlanting
     {
         int day;
         int i = 0;
         while day<> 9125;
             while i>=15;
-        if i mod 3 = 0 then;
+        if i mod 3 = 0;
             Tree.type = maple;
         else if i mod 7 = 0;
-            tree.type = spruce;
+        tree.type = spruce;
         else
             Tree.type = fir;
             endif;
             i += 1;
             Protection();
-            end while;
+        end while;
         end while;
             // this just plants the trees according to the specified ratios 
             // and does it until the end of the simulation
 
+            // this is to completely add a new tree, would be easier to just overwrite
+            // the damaged tree by setting all of the stats to 0:
+    }
+  class Tree_Planting
+    {
+        if tree.damaged = true;
+            tree.age = 0
+            tree.damaged = 0
+            Protection();
+        Tree.type = TreePlanting()
+    }
+    class wolves(WolfPopulatino)
+    {
+        int j = 0;
+        int WolfPopulation = 0;
+        for j to 9125;
+        if fences = true;
+            WolfPopulation += 2
+    }
+    class YearEnd(WolfPopulation)
+    {
+        // write to the database the wolf population, the deer population
+        WolfPopulation += 12
     }
