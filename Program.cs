@@ -21,6 +21,7 @@ namespace trees
 			Random r = new Random();
 			Animals animals = new Animals();
 			Tuple<int, int> results = new Tuple<int, int>(0,0);
+			int rotation = 0;
 
 			for (
 				int day = 0;
@@ -31,7 +32,8 @@ namespace trees
 				ref trees,
 				ref r,
 				ref animals,
-				ref results
+				ref results,
+				ref rotation
 			);
 		}
 	}

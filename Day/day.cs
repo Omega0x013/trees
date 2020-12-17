@@ -10,7 +10,8 @@ namespace trees
 			ref Tree[,] trees,
 			ref Random random,
 			ref Animals animals,
-			ref Tuple<int,int> results
+			ref Tuple<int,int> results,
+			ref int rotation
 		)
 		{
 			// ANIMALS
