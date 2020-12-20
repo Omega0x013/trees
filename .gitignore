@@ -3,3 +3,4 @@ obj/
 .vscode/
 *.json
 .vs/
+.DS_STORE*
